@@ -3,8 +3,7 @@ import React from 'react';
 const Carousel = (props) => (
 	<div className="carousel">
 		<span>{`<`}</span>
-		<img src={props.firstPicture} />
-		<img src={props.secondPicture} />
+		<img src={props.currentImage} />
 		<span>{`>`}</span>
 	</div>
 )
