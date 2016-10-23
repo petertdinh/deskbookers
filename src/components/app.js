@@ -31,14 +31,26 @@ export default class App extends Component {
 	}
 
 	handleRightArrowClick = () => {
-		
+		const images = this.state.currentOfficeImages;
+		if(this.state.currentImage !== images[images.length-1]) {
+			let currentImageIndex = images.indexOf(this.state.currentImage);
+			this.setState({currentImage: images[currentImageIndex+1]});
+		}
+	}
+
+	handleLeftArrowClick = () => {
+		const images = this.state.currentOfficeImages;
+		if(this.state.currentImage !== images[0]) {
+			let currentImageIndex = images.indexOf(this.state.currentImage);
+			this.setState({currentImage: images[currentImageIndex-1]});
+		}
 	}
 
   render() {
   	const renderedResults = this.state.searchResults.map((location) => {
   		const { id, name, rating, location_name, hour_price, day_price, image_urls } = location;
   		return <SearchResult
-  							id={id}
+  							key={id}
   							setCurrentOffice={this.setCurrentOffice.bind(this, location)}
   							name={name}
   							rating={rating}
@@ -56,6 +68,8 @@ export default class App extends Component {
       		onSearchSubmit={this.handleSearchSubmit}
       		parent={this} />
       	<Carousel 
+      		rightArrowClick={this.handleRightArrowClick}
+      		leftArrowClick={this.handleLeftArrowClick}
       		currentOffice={this.state.currentOffice}
       		currentImage={this.state.currentImage} />
       	<div className="results-container">
