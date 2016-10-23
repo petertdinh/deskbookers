@@ -1,6 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
+import fetch from 'isomorphic-fetch';
 import App from '../../src/components/app';
 import NavBar from '../../src/components/nav_bar';
 import Carousel from '../../src/components/carousel';
