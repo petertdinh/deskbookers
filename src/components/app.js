@@ -32,17 +32,22 @@ export default class App extends Component {
 
 	handleRightArrowClick = () => {
 		const images = this.state.currentOfficeImages;
+		let currentImageIndex = images.indexOf(this.state.currentImage);
 		if(this.state.currentImage !== images[images.length-1]) {
-			let currentImageIndex = images.indexOf(this.state.currentImage);
 			this.setState({currentImage: images[currentImageIndex+1]});
+		} else {
+			this.setState({currentImage: images[0]})
 		}
 	}
 
 	handleLeftArrowClick = () => {
 		const images = this.state.currentOfficeImages;
+		let currentImageIndex = images.indexOf(this.state.currentImage);
 		if(this.state.currentImage !== images[0]) {
 			let currentImageIndex = images.indexOf(this.state.currentImage);
 			this.setState({currentImage: images[currentImageIndex-1]});
+		} else {
+			this.setState({currentImage: images[images.length-1]})
 		}
 	}
 
@@ -63,15 +68,15 @@ export default class App extends Component {
     return (
       <div>
       	<NavBar />
-      	<SearchBar 
-      		searchBarInput={this.state.searchBarInput}
-      		onSearchSubmit={this.handleSearchSubmit}
-      		parent={this} />
       	<Carousel 
       		rightArrowClick={this.handleRightArrowClick}
       		leftArrowClick={this.handleLeftArrowClick}
       		currentOffice={this.state.currentOffice}
       		currentImage={this.state.currentImage} />
+      	<SearchBar 
+      		searchBarInput={this.state.searchBarInput}
+      		onSearchSubmit={this.handleSearchSubmit}
+      		parent={this} />
       	<div className="results-container">
       		{renderedResults}
       	</div>

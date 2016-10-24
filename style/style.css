@@ -1,0 +1,103 @@
+body {
+	height: 100%;
+	width: 100%;
+}
+
+.search-bar {
+	margin: 0 auto;
+	width: 20%;
+}
+
+.current-image {
+	margin: 0 auto;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height: 30em;
+	width: 55%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.results-container {
+	margin: 0 auto;
+	max-height: 13em;
+	overflow-x: auto;
+	display: flex;
+	flex-wrap: wrap;
+	width: 55%;
+	justify-content: space-around;
+}
+
+.container {
+	margin: 0 10%;
+}
+
+.left-arrow, .right-arrow {
+
+}
+
+.headline {
+	text-align: center;
+}
+
+.search-result {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+.rating-price {
+	display: flex;
+	justify-content: space-between;
+}
+
+
+.hour-price, .day-price {
+	padding: 0 5px;
+	float: right;
+	background-color: black;
+	color: white;
+	text-align: right;
+	font-weight: bold;
+	margin: 2px 0;
+	align-self: flex-end;
+	border-radius: 5px;
+}
+
+.hour-price {
+	font-size: 1.5em;
+}
+
+.day-price {
+	font-size: 1em;
+	align-self: flex-end;
+}
+
+.rating {
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	align-self: flex-end;
+	border-radius: 5px;
+	margin: 0 5px 5px 3px;
+	padding: 2px;
+}
+
+.prices {
+	margin: 0 3px 3px 0;
+}
+
+.name, .location {
+	display: inline-block;
+	color: white;
+	font-weight: bold;
+	margin: 3px;
+	width: auto;
+	padding: 3px;
+	background-color: black;
+	border-radius: 5px;
+}

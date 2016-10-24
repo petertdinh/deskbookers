@@ -2,10 +2,11 @@ import React from 'react';
 
 const Carousel = (props) => (
 	<div className="carousel">
-		<div className="headline">{props.currentOffice}</div>
-		<span onClick={() => props.leftArrowClick()}>{`<`}</span>
-		<img src={props.currentImage} />
-		<span onClick={() => props.rightArrowClick()}>{`>`}</span>
+		<h2 className="headline">{props.currentOffice}</h2>
+		<div className="current-image" style={{backgroundImage: `url(${props.currentImage})`}}>
+			<span className="left-arrow" onClick={() => props.leftArrowClick()}>{`<`}</span>
+			<span className="right-arrow" onClick={() => props.rightArrowClick()}>{`>`}</span>
+		</div>
 	</div>
 )
 
