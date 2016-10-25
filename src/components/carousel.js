@@ -12,8 +12,8 @@ const Carousel = (props) => {
 	return (
 		<div className="carousel">
 			{images}
-			<a onClick={() => props.handleLeftArrowClick()}className="w3-btn-floating w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
-			<a onClick={() => props.handleRightArrowClick()} className="w3-btn-floating w3-display-right" onclick="plusDivs(+1)">&#10095;</a>
+			<a onClick={() => props.handleLeftArrowClick()}className="w3-btn-floating w3-display-left">&#10094;</a>
+			<a onClick={() => props.handleRightArrowClick()} className="w3-btn-floating w3-display-right">&#10095;</a>
 		</div>
 		);
 }
