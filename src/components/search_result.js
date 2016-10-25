@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SearchResult = (props) => (
-	<span className="search-result" style={{backgroundImage: `url(${props.thumbnail})`, backgroundSize: '100%', height: 210, width: 316}}onClick={() => props.setCurrentOffice() }>	
+	<div className="search-result" style={{backgroundImage: `url(${props.thumbnail})`, backgroundSize: '100%', height: 210, width: 316}}onClick={() => props.setCurrentOffice() }>	
 				<div className="name-location">
 					<span className="name">{props.name}</span><br/>
 					<span className="location">{props.location}</span>
@@ -13,7 +13,7 @@ const SearchResult = (props) => (
 						<span className="day-price">{` €${props.dayPrice}/day `}</span>
 					</div>
 				</div>
-	</span>
+	</div>
 );
 
 export default SearchResult;

@@ -7,79 +7,48 @@ import SearchResult from './search_result';
 export default class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { currentOffice: '', currentOfficeImages: [], currentImage: '', searchBarInput: '', searchResults: [] };
+		this.state = { 
+			carouselImages: [
+				`https://media.glassdoor.com/l/c2/4e/cc/16/nice-israel-r-and-d-office.jpg`,
+				`https://static.pexels.com/photos/28756/pexels-photo.jpg`,
+				`https://static.pexels.com/photos/7070/space-desk-workspace-coworking.jpg`,
+				`http://cdn5.thinkcomputers.org/wp-content/uploads/2015/11/office-lighting-166.jpg`,
+				`http://www.maintainwithfresh.com/images/office/office.jpg`,
+			], 
+			currentImage: `https://media.glassdoor.com/l/c2/4e/cc/16/nice-israel-r-and-d-office.jpg`, 
+			searchBarInput: '',
+			activeImage: 0 };
 	}
-	componentDidMount() {
-		this.fetchOffices('Amsterdam');
-	}
-
-	fetchOffices = (location) => {
-		fetch(`https://www.deskbookers.com/nl-nl/sajax.json?q=${location}`)
-			.then(resp => resp.json())
-			.then(json => {
-				const { rows } = json;
-				this.setState({searchResults: rows, currentOffice: rows[0].name, currentOfficeImages: rows[0].image_urls, currentImage: rows[0].image_urls[0]});
-			});
-	}
-
-	handleSearchSubmit = (location) => {
-		this.fetchOffices(location);
-	}
-
-	setCurrentOffice = (office) => {
-		this.setState({currentOffice: office.name, currentOfficeImages: office.image_urls, currentImage: office.image_urls[0]});
-	}
-
+	
 	handleRightArrowClick = () => {
-		const images = this.state.currentOfficeImages;
-		let currentImageIndex = images.indexOf(this.state.currentImage);
-		if(this.state.currentImage !== images[images.length-1]) {
-			this.setState({currentImage: images[currentImageIndex+1]});
+		if(this.state.activeImage !== this.state.carouselImages.length-1) {
+			this.setState({activeImage: this.state.activeImage+1});
 		} else {
-			this.setState({currentImage: images[0]})
+			this.setState({activeImage: 0});
 		}
 	}
 
 	handleLeftArrowClick = () => {
-		const images = this.state.currentOfficeImages;
-		let currentImageIndex = images.indexOf(this.state.currentImage);
-		if(this.state.currentImage !== images[0]) {
-			let currentImageIndex = images.indexOf(this.state.currentImage);
-			this.setState({currentImage: images[currentImageIndex-1]});
+		if(this.state.activeImage !== 0) {
+			this.setState({activeImage: this.state.activeImage-1});
 		} else {
-			this.setState({currentImage: images[images.length-1]})
+			this.setState({activeImage: this.state.carouselImages.length-1});
 		}
 	}
 
   render() {
-  	const renderedResults = this.state.searchResults.map((location) => {
-  		const { id, name, rating, location_name, hour_price, day_price, image_urls } = location;
-  		return <SearchResult
-  							key={id}
-  							setCurrentOffice={this.setCurrentOffice.bind(this, location)}
-  							name={name}
-  							rating={rating}
-  							location={location_name}
-  							hourPrice={hour_price}
-  							dayPrice={day_price}
-  							thumbnail={image_urls[0]} />
-  	});
-
     return (
       <div>
       	<NavBar />
-      	<Carousel 
-      		rightArrowClick={this.handleRightArrowClick}
-      		leftArrowClick={this.handleLeftArrowClick}
-      		currentOffice={this.state.currentOffice}
-      		currentImage={this.state.currentImage} />
-      	<SearchBar 
-      		searchBarInput={this.state.searchBarInput}
-      		onSearchSubmit={this.handleSearchSubmit}
+      	<Carousel
+      		handleRightArrowClick={this.handleRightArrowClick}
+      		handleLeftArrowClick={this.handleLeftArrowClick}
+      		activeImage={this.state.activeImage}
+      		carouselImages={this.state.carouselImages} />
+      	<SearchBar
+      		onSearchSubmit={this.onSearchSubmit}
+      		searchBarInput={this.state.searchBarInput} 
       		parent={this} />
-      	<div className="results-container">
-      		{renderedResults}
-      	</div>
       </div>
     );
   }

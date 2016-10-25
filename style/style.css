@@ -1,4 +1,30 @@
-body {
+.nav-bar {
+	background-color: purple;
+	color: white;
+	width: 100%;
+}
+
+.image {
+	height: 56em;
+	width: 100%;
+	background: no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	position: absolute;
+}
+
+.nav-bar {
+	font-family: 'Trirong', serif;
+	font-size: 2em;
+}
+
+.search-bar {
+	margin: 56em auto 0 auto;
+	width: 15%;
+}
+
+/*body {
 	height: 100%;
 	width: 100%;
 }
@@ -12,8 +38,7 @@ body {
 	margin: 0 auto;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	height: 30em;
-	width: 55%;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -22,19 +47,29 @@ body {
 .results-container {
 	margin: 0 auto;
 	max-height: 13em;
-	overflow-x: auto;
+	overflow: auto;
 	display: flex;
 	flex-wrap: wrap;
 	width: 55%;
-	justify-content: space-around;
+	justify-content: flex-start;
+	align-content: flex-start;
 }
 
-.container {
-	margin: 0 10%;
-}
 
 .left-arrow, .right-arrow {
+	color: white;
+	font-weight: bold;
+	font-size: 60px;
+	text-align: center;
+	cursor: pointer;
+}
 
+.left-arrow {
+	margin-left: 5px;
+}
+
+.right-arrow {
+	margin-right: 5px;
 }
 
 .headline {
@@ -43,6 +78,7 @@ body {
 
 .search-result {
 	display: flex;
+	flex-grow: 1;
 	flex-direction: column;
 	justify-content: space-between;
 	margin-right: 5px;
@@ -100,4 +136,4 @@ body {
 	padding: 3px;
 	background-color: black;
 	border-radius: 5px;
-}
+}*/
