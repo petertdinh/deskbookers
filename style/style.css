@@ -1,6 +1,7 @@
 .nav-bar {
-	background-color: purple;
+	background: linear-gradient(to bottom right, #2E0854, #00688B);
 	color: white;
+	box-sizing: inherit;
 	width: 100%;
 }
 
@@ -20,13 +21,25 @@
 }
 
 .search-bar {
-	margin: 56em auto 0 auto;
+	margin: 56.5em auto .5em auto;
 	width: 15%;
 }
 
-.results-container {
-	height: 320px;
+.results-map {
+	display: flex;
+}
+
+.map, .results-container {
+	height: 460px;
+	width: 50%;
+}
+
+.map-element {
+	height: 460px;
 	width: 100%;
+}
+
+.results-container {
 	overflow-x: scroll;
 	display: flex;
 	flex-wrap: wrap;

@@ -3,6 +3,7 @@ import NavBar from './nav_bar';
 import Carousel from './carousel';
 import SearchBar from './search_bar';
 import SearchResult from './search_result';
+import MapComponent from './map_component';
 
 export default class App extends Component {
 	constructor(props) {
@@ -18,14 +19,16 @@ export default class App extends Component {
 			currentImage: `https://media.glassdoor.com/l/c2/4e/cc/16/nice-israel-r-and-d-office.jpg`, 
 			searchBarInput: '',
 			activeImage: 0,
-			searchResults: [] };
+			searchResults: [],
+			mapCenter: {},
+			markers: [] };
 	}
 
-	onSearchSubmit = () => {
-		fetch(`https://www.deskbookers.com/nl-nl/sajax.json?q=Amsterdam&type=-&people=any&favorite=0&pid=&sw=52.293753%2C4.634942&ne=52.455562%2C5.162286&ids=17201%2C19640%2C13692%2C13691%2C12136%2C17938%2C15292%2C14886%2C14885%2C14884%2C14883%2C15730%2C15353%2C15351%2C15330%2C15080%2C17290%2C15454%2C15451%2C15379`)
+	onSearchSubmit = (location) => {
+		fetch(`https://www.deskbookers.com/nl-nl/sajax.json?q=${location}`)
 			.then(resp => resp.json())
 			.then(json => {
-				this.setState({searchResults: json.rows});
+				this.setState({searchResults: json.rows, mapCenter: json.extraCoordinates[0]});
 			});
 	}
 
@@ -59,6 +62,15 @@ export default class App extends Component {
   				thumbnail={image_urls[0]} />
   		)
   	});
+  	while(renderedResults.length % 2 !== 0) {
+  		renderedResults.pop();
+  	}
+  	const markers = this.state.searchResults.reduce((prev, next) => {
+  		const { coordinate, id } = next;
+  		const markerObj = {position: {lat: coordinate[0], lng: coordinate[1]}, key: id, defaultAnimation: 2};
+  		prev.push(markerObj);
+  		return prev;
+  	}, []);
 
     return (
       <div>
@@ -72,8 +84,16 @@ export default class App extends Component {
       		onSearchSubmit={this.onSearchSubmit}
       		searchBarInput={this.state.searchBarInput} 
       		parent={this} />
-      	<div className="results-container">
-      		{renderedResults}
+      	<div className="results-map">
+	      	<div className="results-container">
+	      		{renderedResults}
+	      	</div>
+	      	{this.state.mapCenter.lat ? <MapComponent
+	      		      		containerElement={<div className="map"/>}
+	      		      		mapElement={<div className="map-element" />}
+	      		      		lat={this.state.mapCenter.lat}
+	      		      		lng={this.state.mapCenter.lng}
+	      		      		markers={markers} /> : null}
       	</div>
       </div>
     );

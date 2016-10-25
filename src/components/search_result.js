@@ -15,7 +15,7 @@ const SearchResult = (props) => (
 						name="ratel"
 						starCount={5}
 						emptyStarColor="white"
-						value={Math.round(props.rating)/2} /> :
+						value={props.rating/2} /> :
 						<span></span>
 					}
 					<div className="prices">
