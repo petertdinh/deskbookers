@@ -1,36 +1,21 @@
 import React, { Component } from 'react';
 
 const Carousel = (props) => {
+	const style = {left: (props.activeImage * -window.innerWidth) + (17 * props.activeImage), transition: '1s'};
 	const images = props.carouselImages.map((image, index) => {
-		const style = index !== props.activeImage ? "slideOutLeft" : "slideInRight";
 		return <div 
 						key={index}
-						className={`image animated ${style}`}
+						className="image"
 						style={{backgroundImage: `url(${image})`}} />
 	});
 
 	return (
-		<div className="carousel">
+		<div className="carousel" style={style}>
 			{images}
-			<a onClick={() => props.handleLeftArrowClick()}className="w3-btn-floating w3-display-left">&#10094;</a>
-			<a onClick={() => props.handleRightArrowClick()} className="w3-btn-floating w3-display-right">&#10095;</a>
+			<a onClick={() => props.handleLeftArrowClick()}className="left-arrow">&#10094;</a>
+			<a onClick={() => props.handleRightArrowClick()} className="right-arrow">&#10095;</a>
 		</div>
 		);
 }
 
 export default Carousel;
-
-// export default class Carousel extends Component {
-// 	constructor(props) {
-// 		super(props);
-// 		this.state = {animationClass: 'slideInRight'};
-// 	}
-
-// 	componentWillReceiveProps(nextProps) {
-
-// 	}
-
-// 	render() {
-
-// 	}
-// }

@@ -18,12 +18,17 @@ export default class App extends Component {
 				`http://cdn5.thinkcomputers.org/wp-content/uploads/2015/11/office-lighting-166.jpg`,
 				`http://www.maintainwithfresh.com/images/office/office.jpg`,
 			], 
-			currentImage: `https://media.glassdoor.com/l/c2/4e/cc/16/nice-israel-r-and-d-office.jpg`, 
 			searchBarInput: '',
 			activeImage: 0,
 			searchResults: [],
 			mapCenter: {}
 		};
+	}
+
+	componentDidMount() {
+		console.log('width', window.width);
+		console.log('inner', window.innerWidth);
+		console.log('outer', window.outerWidth);
 	}
 
 	onSearchSubmit = (location) => {

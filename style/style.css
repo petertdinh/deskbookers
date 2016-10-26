@@ -5,6 +5,12 @@
 	width: 100%;
 }
 
+.carousel {
+	position: absolute;
+	display: flex;
+	width: 500%;
+}
+
 .image {
 	height: 56em;
 	width: 100%;
@@ -12,7 +18,7 @@
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	position: absolute;
+	/*position: absolute;*/
 }
 
 .nav-bar {
@@ -27,6 +33,28 @@
 
 .results-map {
 	display: flex;
+}
+
+.left-arrow, .right-arrow {
+	margin: 0 5px;
+	color: white;
+	font-size: 2em;
+	position: fixed;
+	z-index: 10;
+	top: 46%;
+	background: black;
+	padding: 0px 23px 0 18px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.left-arrow {
+	left: 0%;
+}
+
+.right-arrow {
+	padding: 0px 21px 0 18px;
+	right: 0%;
 }
 
 .map, .results-container {
