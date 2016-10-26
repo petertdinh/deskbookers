@@ -39,7 +39,7 @@
 	margin: 0 5px;
 	color: white;
 	font-size: 2em;
-	position: fixed;
+	position: absolute;
 	z-index: 10;
 	top: 46%;
 	background: black;
@@ -49,12 +49,12 @@
 }
 
 .left-arrow {
-	left: 0%;
+	/*left: 0%;*/
 }
 
 .right-arrow {
 	padding: 0px 21px 0 18px;
-	right: 0%;
+	/*right: 0%;*/
 }
 
 .map, .results-container {
@@ -132,6 +132,6 @@
 	margin: 3px;
 	width: auto;
 	padding: 3px;
-	background-color: rgba(0,0,0,0.6);
+	background-color: rgba(0,0,0,0.5);
 	border-radius: 5px;
 }

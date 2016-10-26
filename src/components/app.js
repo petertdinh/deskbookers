@@ -25,12 +25,6 @@ export default class App extends Component {
 		};
 	}
 
-	componentDidMount() {
-		console.log('width', window.width);
-		console.log('inner', window.innerWidth);
-		console.log('outer', window.outerWidth);
-	}
-
 	onSearchSubmit = (location) => {
 		this.setState({mapCenter: {}});
 		animateScroll.scrollTo(500, {
