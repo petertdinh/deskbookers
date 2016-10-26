@@ -9,6 +9,6 @@
 To run tests
 
 ```
-	> npm install
-	> npm start
+	> npm run test
 ```
+The boilerplate that I used is Stephen Grider's ReduxSimpleStarter. I removed Redux as the application didn't need it.
