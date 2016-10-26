@@ -3,6 +3,8 @@
 	color: white;
 	box-sizing: inherit;
 	width: 100%;
+	font-family: 'Trirong', serif;
+	font-size: 2em;
 }
 
 .carousel {
@@ -18,21 +20,6 @@
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	/*position: absolute;*/
-}
-
-.nav-bar {
-	font-family: 'Trirong', serif;
-	font-size: 2em;
-}
-
-.search-bar {
-	margin: 56.5em auto .5em auto;
-	width: 15%;
-}
-
-.results-map {
-	display: flex;
 }
 
 .left-arrow, .right-arrow {
@@ -48,13 +35,17 @@
 	cursor: pointer;
 }
 
-.left-arrow {
-	/*left: 0%;*/
-}
-
 .right-arrow {
 	padding: 0px 21px 0 18px;
-	/*right: 0%;*/
+}
+
+.search-bar {
+	margin: 56.5em auto .5em auto;
+	width: 15%;
+}
+
+.results-map-container {
+	display: flex;
 }
 
 .map, .results-container {
@@ -88,7 +79,6 @@
 	display: flex;
 	justify-content: space-between;
 }
-
 
 .hour-price, .day-price {
 	padding: 0 5px;

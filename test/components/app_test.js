@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import fetch from 'isomorphic-fetch';
 import App from '../../src/components/app';
 import NavBar from '../../src/components/nav_bar';
@@ -9,11 +9,9 @@ import SearchBar from '../../src/components/search_bar';
 
 describe('App' , () => {
   let mountedWrapper;
-  let shallowWrapper;
 
   beforeEach(() => {
     mountedWrapper = mount(<App />);
-    shallowWrapper = shallow(<App />);
   });
 
   it('renders something', () => {

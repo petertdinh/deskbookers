@@ -10,29 +10,33 @@ import MapComponent from './map_component';
 export default class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { 
+		this.state = {
+			//some nice office images grabbed from the web
 			carouselImages: [
-				`https://media.glassdoor.com/l/c2/4e/cc/16/nice-israel-r-and-d-office.jpg`,
+				`https://officesnapshots.com/wp-content/uploads/2016/05/dsp-nice-office-design-6.jpg`,
 				`https://static.pexels.com/photos/28756/pexels-photo.jpg`,
 				`https://static.pexels.com/photos/7070/space-desk-workspace-coworking.jpg`,
 				`http://cdn5.thinkcomputers.org/wp-content/uploads/2015/11/office-lighting-166.jpg`,
 				`http://www.maintainwithfresh.com/images/office/office.jpg`,
 			], 
 			searchBarInput: '',
+			//denotes the current image by index
 			activeImage: 0,
 			searchResults: [],
+			//depending on what the search was, the map would center on that region
 			mapCenter: {}
 		};
 	}
 
 	onSearchSubmit = (location) => {
-		this.setState({mapCenter: {}});
+		this.setState({mapCenter: {}, searchBarInput: ''});
 		animateScroll.scrollTo(500, {
 			smooth: true,
 			duration: 200,
 		});
 
 		fetch(`https://www.deskbookers.com/nl-nl/sajax.json?q=${location}`)
+		//all locations served by deskbookers can be searched
 			.then(resp => resp.json())
 			.then(json => {
 				this.setState({searchResults: json.rows, mapCenter: json.extraCoordinates[0]});
@@ -72,6 +76,7 @@ export default class App extends Component {
   	while(renderedResults.length % 2 !== 0) {
   		renderedResults.pop();
   	}
+  	//to denote where each of the individual map markers land on the map
   	const markers = this.state.searchResults.reduce((prev, current) => {
   		const { coordinate, id } = current;
   		const markerObj = {position: {lat: coordinate[0], lng: coordinate[1]}, key: id, defaultAnimation: 2};
@@ -91,7 +96,7 @@ export default class App extends Component {
       		onSearchSubmit={this.onSearchSubmit}
       		searchBarInput={this.state.searchBarInput} 
       		parent={this} />
-      	<div className="results-map">
+      	<div className="results-map-container">
 	      	<div className="results-container">
 	      		{renderedResults}
 	      	</div>
