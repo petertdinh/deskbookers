@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom';
+import { animateScroll } from 'react-scroll';
 import NavBar from './nav_bar';
 import Carousel from './carousel';
 import SearchBar from './search_bar';
@@ -20,11 +22,17 @@ export default class App extends Component {
 			searchBarInput: '',
 			activeImage: 0,
 			searchResults: [],
-			mapCenter: {},
-			markers: [] };
+			mapCenter: {}
+		};
 	}
 
 	onSearchSubmit = (location) => {
+		this.setState({mapCenter: {}});
+		animateScroll.scrollTo(500, {
+			smooth: true,
+			duration: 200,
+		});
+
 		fetch(`https://www.deskbookers.com/nl-nl/sajax.json?q=${location}`)
 			.then(resp => resp.json())
 			.then(json => {
@@ -65,8 +73,8 @@ export default class App extends Component {
   	while(renderedResults.length % 2 !== 0) {
   		renderedResults.pop();
   	}
-  	const markers = this.state.searchResults.reduce((prev, next) => {
-  		const { coordinate, id } = next;
+  	const markers = this.state.searchResults.reduce((prev, current) => {
+  		const { coordinate, id } = current;
   		const markerObj = {position: {lat: coordinate[0], lng: coordinate[1]}, key: id, defaultAnimation: 2};
   		prev.push(markerObj);
   		return prev;

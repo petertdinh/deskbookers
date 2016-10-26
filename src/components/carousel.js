@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 const Carousel = (props) => {
 	const images = props.carouselImages.map((image, index) => {
-		const style = index !== props.activeImage ? {visibility: 'hidden'} : {};
+		const style = index !== props.activeImage ? "slideOutLeft" : "slideInRight";
 		return <div 
 						key={index}
-						className="image"
-						style={{backgroundImage: `url(${image})`, ...style}} />
+						className={`image animated ${style}`}
+						style={{backgroundImage: `url(${image})`}} />
 	});
 
 	return (
@@ -19,3 +19,18 @@ const Carousel = (props) => {
 }
 
 export default Carousel;
+
+// export default class Carousel extends Component {
+// 	constructor(props) {
+// 		super(props);
+// 		this.state = {animationClass: 'slideInRight'};
+// 	}
+
+// 	componentWillReceiveProps(nextProps) {
+
+// 	}
+
+// 	render() {
+
+// 	}
+// }
