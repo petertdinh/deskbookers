@@ -28,6 +28,29 @@ export default class App extends Component {
 		};
 	}
 
+	componentDidMount() {
+	  this.setCarouselInterval();
+	}
+
+	componentWillUnmount() {
+	  this.clearInterval();
+	}
+
+	setCarouselInterval = () => (
+	  this.intervalId = setInterval(() => {
+	  	this.handleRightArrowClick();
+	  }, 3000)
+	);
+
+	clearInterval = () => {
+	  if (this.intervalId) clearInterval(this.intervalId);
+	};
+
+	resetInterval = () => {
+	  this.clearInterval();
+	  this.setCarouselInterval();
+	};
+
 	onSearchSubmit = (location) => {
 		this.setState({mapCenter: {}, searchBarInput: ''});
 		animateScroll.scrollTo(500, {
@@ -49,6 +72,7 @@ export default class App extends Component {
 		} else {
 			this.setState({activeImage: 0});
 		}
+		this.resetInterval();
 	}
 
 	handleLeftArrowClick = () => {
@@ -57,6 +81,7 @@ export default class App extends Component {
 		} else {
 			this.setState({activeImage: this.state.carouselImages.length-1});
 		}
+		this.resetInterval();
 	}
 
   render() {
